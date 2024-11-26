@@ -16,7 +16,9 @@ HTTPS clone URL: `git clone https://github.com/andreymelkov/assistant.git`
 - в файле nginx/api.conf указать свой server_name. Если не указывать server_name и не подменять SSL, то сервис будет доступен по адресу https://localhost:1082
 
 ### 4. Запустить докер контейнер
-Из папки клона проекта в командной строке: `make build-all`
+Из папки клона проекта в командной строке:
+- для использования на CPU `make build-all`
+- для использования на GPU `make build-all-gpu`
 
 Сервис докер должен быть запущен
 
