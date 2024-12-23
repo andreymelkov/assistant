@@ -23,6 +23,6 @@ HTTPS clone URL: `git clone https://github.com/andreymelkov/assistant.git`
 Сервис докер должен быть запущен
 
 ### 5. Пользователь для использования по-умолчанию
-Логин `admin`
+Логин `admin@localhost`
 
 Пароль `2yZnWGfq8G`
