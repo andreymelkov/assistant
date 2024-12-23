@@ -13,7 +13,7 @@ HTTPS clone URL: `git clone https://github.com/andreymelkov/assistant.git`
 
 ### 3. Настроить NGINX в репозитории
 - в папку ssl добавить файлы SSL сертификатов (ключа и цепочки сертификатов)
-- в файле nginx/api.conf указать свой server_name. Если не указывать server_name и не подменять SSL, то сервис будет доступен по адресу https://localhost:1082
+- в файле nginx/api.conf указать свой server_name и указать путь к ssl сертификатам. Если не указывать server_name и не подменять SSL, то сервис будет доступен по адресу https://localhost:1082
 
 ### 4. Запустить докер контейнер
 Из папки клона проекта в командной строке:
