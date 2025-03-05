@@ -35,6 +35,41 @@ location / {
 ```
 на внутренний сервис user-http по внутреннему порту в докере 2800
 
+* `assistant/new` - создание ассистента
+* `assistant/update` - обновление ассистента
+* `assistant/get` - получение ассистента
+* `assistant/list` - получение ассистентов
+* `assistant/delete` - удаление ассистента
+
+Nginx распределяет по правилу:
+```c
+location / {
+        location /assistant {
+            rewrite /(.*) /$1  break;
+            proxy_set_header   X-Forwarded-For $remote_addr;
+            proxy_set_header   Host $http_host;
+            proxy_pass         http://assistant-http:2801/;
+        }
+...
+}
+```
+
 ### 2. User-HTTP
 Это сервис, который является http сервером внутри докера и слушает 2800 порт.
+Также этот сервис является клиентом к grpc сервису user-grpc
 Логи по нему можно посмотреть командой docker logs user-http-assist
+
+### 3. User-GRPC
+Это сервис, который является GRPC сервером внутри докера и слушает 2900 порт.
+Сервис выполняет всю логику работы с пользователем и работает с базой данных
+Логи по нему можно посмотреть командой docker logs user-grpc-assist
+
+### 4. Assistant-HTTP
+Это сервис, который является http сервером внутри докера и слушает 2801 порт.
+Также этот сервис является клиентом к grpc сервису assistant-grpc
+Логи по нему можно посмотреть командой docker logs assistant-http-assist
+
+### 5. Assistant-GRPC
+Это сервис, который является GRPC сервером внутри докера и слушает 2900 порт.
+Сервис выполняет всю логику работы с ассистентами, диалогами, историей общения и работает с базой данных
+Логи по нему можно посмотреть командой docker logs assistant-grpc-assist
